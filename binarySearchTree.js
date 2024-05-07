@@ -251,4 +251,26 @@ class Tree {
     // Return the values array if no callback was provided
     if (!callback) return values;
   }
+
+  isBalanced() {
+    return this.isBalancedIterative(this.root);
+  }
+
+  // Checks if the difference between the heights of the left subtree and
+  // the heights of the right subtree of every node is not more than 1
+  isBalancedIterative(root) {
+    if (root === null) return;
+
+    // Get and compare the heights of the existing subtrees
+    const leftHeight = root.left ? this.getHeight(root.left, 0) : null;
+    const rightHeight = root.right ? this.getHeight(root.right, 0) : null;
+    // If the difference between the heights is bigger than 2, then the tree is not balanced
+    if (Math.abs(leftHeight - rightHeight) > 1) return false;
+
+    const left = this.isBalancedIterative(root.left);
+    const right = this.isBalancedIterative(root.right);
+    // If either one of the subtrees returned false, then the tree is not balanced
+    if (left === false || right === false) return false;
+    return true;
+  }
 }
