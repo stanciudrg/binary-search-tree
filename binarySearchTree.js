@@ -29,4 +29,17 @@ class Tree {
 
     return node;
   }
+
+  insert(value) {
+    this.insertNode(this.root, value);
+  }
+
+  // Inserts a given value into the tree
+  insertNode(root, value) {
+    if (root === null) return (root = new Node(value));
+    if (root.data > value) root.left = this.insertNode(root.left, value);
+    if (root.data < value) root.right = this.insertNode(root.right, value);
+
+    return root;
+  }
 }
