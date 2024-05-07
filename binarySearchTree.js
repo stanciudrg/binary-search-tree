@@ -138,4 +138,41 @@ class Tree {
       return rightLevel;
     }
   }
+
+  levelOrder(callback) {
+    return this.levelOrderIterative(callback);
+  }
+
+  // Breadth-first level order traversal
+  levelOrderIterative(callback) {
+    if (this.root === null) return;
+
+    // Queue used to keep track of the nodes on each level
+    const queue = [];
+    // Will hold the values pushed in the correct breadth-first order
+    const values = [];
+    // Start with the root...
+    queue.push(this.root);
+
+    // ...and keep going until the queue is empty
+    while (queue.length > 0) {
+      // Always work on the first node in the queue (FIFO)
+      const currentNode = queue[0];
+
+      // If callback was passed, execute, otherwise push into values array
+      if (callback) {
+        callback(currentNode.data);
+      } else {
+        values.push(currentNode.data);
+      }
+
+      // Keep pushing left and right nodes into the queue
+      if (currentNode.left !== null) queue.push(currentNode.left);
+      if (currentNode.right !== null) queue.push(currentNode.right);
+      queue.shift();
+    }
+
+    // Return the values array if no callback was provided
+    if (!callback) return values;
+  }
 }
