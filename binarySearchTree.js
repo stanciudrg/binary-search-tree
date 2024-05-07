@@ -111,4 +111,31 @@ class Tree {
       return rightLevel;
     }
   }
+
+  depth(node) {
+    if (!node) return;
+    if (!node.data) return;
+
+    return this.getDepth(this.root, node, 0);
+  }
+
+  // Returns the depth of the node, which is defined as the number of edges in
+  // the path from a given node to the tree’s root node.
+  getDepth(root, node, level) {
+    if (root === null) return;
+    // Use 1-based indexing
+    if (root.data == node.data) return level + 1;
+
+    // Increase the level with each recursion to determine how many
+    // levels it took to reach the root starting from the node
+    const newLevel = level + 1;
+    const leftLevel = this.getDepth(root.left, node, newLevel);
+    const rightLevel = this.getDepth(root.right, node, newLevel);
+
+    if (leftLevel) {
+      return leftLevel;
+    } else {
+      return rightLevel;
+    }
+  }
 }
