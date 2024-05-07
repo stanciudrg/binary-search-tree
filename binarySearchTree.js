@@ -298,4 +298,16 @@ class Tree {
 
     return lowest;
   }
+
+  // Helper to visualize the binary search tree
+  printTree(node, prefix = "", isLeft = true) {
+    if (node === null) return;
+    if (node.right !== null) {
+      this.printTree(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+    if (node.left !== null) {
+      this.printTree(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    }
+  }
 }
