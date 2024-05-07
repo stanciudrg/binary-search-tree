@@ -175,4 +175,80 @@ class Tree {
     // Return the values array if no callback was provided
     if (!callback) return values;
   }
+
+  // Depth-first level order traversal - Pre-order (root -> left -> right)
+  preOrder(callback) {
+    // Will hold the values pushed in the correct depth-first order
+    const values = [];
+    // Initiate recursion starting with the root
+    preOrderRecursive(this.root, callback);
+
+    function preOrderRecursive(root, callback) {
+      if (root === null) return;
+
+      // If callback was passed, execute, otherwise push into values array
+      if (callback) {
+        callback(root.data);
+      } else {
+        values.push(root.data);
+      }
+
+      preOrderRecursive(root.left, callback);
+      preOrderRecursive(root.right, callback);
+    }
+
+    // Return the values array if no callback was provided
+    if (!callback) return values;
+  }
+
+  // Depth-first level order traversal - In-order (left -> root -> right)
+  inOrder(callback) {
+    // Will hold the values pushed in the correct depth-first order
+    const values = [];
+    // Initiate recursion starting with the root
+    inOrderRecursive(this.root, callback);
+
+    function inOrderRecursive(root, callback) {
+      if (root === null) return;
+
+      inOrderRecursive(root.left, callback);
+
+      // If callback was passed, execute, otherwise push into values array
+      if (callback) {
+        callback(root.data);
+      } else {
+        values.push(root.data);
+      }
+
+      inOrderRecursive(root.right, callback);
+    }
+
+    // Return the values array if no callback was provided
+    if (!callback) return values;
+  }
+
+  // Depth-first level order traversal - Post-order (left -> right -> root)
+  postOrder(callback) {
+    // Will hold the values pushed in the correct depth-first order
+    const values = [];
+    // Initiate recursion starting with the root
+    postOrderRecursive(this.root, callback);
+
+    function postOrderRecursive(root, callback) {
+      if (root === null) return;
+
+      postOrderRecursive(root.left, callback);
+      postOrderRecursive(root.right, callback);
+
+      // If callback was passed, execute, otherwise push into values array
+      if (callback) {
+        callback(root.data);
+      } else {
+        values.push(root.data);
+      }
+    }
+
+    // Return the values array if no callback was provided
+    if (!callback) return values;
+  }
 }
