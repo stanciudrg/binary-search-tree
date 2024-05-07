@@ -273,4 +273,16 @@ class Tree {
     if (left === false || right === false) return false;
     return true;
   }
+
+  // Re-balances the tree
+  rebalance() {
+    // Gets an array of values that are already sorted due to the nature of the
+    // DFS In-order traversal function.
+    // ! inOrder() returns an array of values if no callback is passed
+    const newArray = this.inOrder();
+    // Uses the array of sorted values to build a new balanced tree
+    // ! buildTree will always build a balanced tree as long as the provided
+    // array is sorted.
+    this.root = this.buildTree(newArray, 0, newArray.length - 1);
+  }
 }
