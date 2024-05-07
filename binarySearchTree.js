@@ -258,7 +258,7 @@ class Tree {
 
   // Checks if the difference between the heights of the left subtree and
   // the heights of the right subtree of every node is not more than 1
-  isBalancedIterative(root) {
+  isBalancedRecursive(root) {
     if (root === null) return;
 
     // Get and compare the heights of the existing subtrees
@@ -267,8 +267,8 @@ class Tree {
     // If the difference between the heights is bigger than 2, then the tree is not balanced
     if (Math.abs(leftHeight - rightHeight) > 1) return false;
 
-    const left = this.isBalancedIterative(root.left);
-    const right = this.isBalancedIterative(root.right);
+    const left = this.isBalancedRecursive(root.left);
+    const right = this.isBalancedRecursive(root.right);
     // If either one of the subtrees returned false, then the tree is not balanced
     if (left === false || right === false) return false;
     return true;
