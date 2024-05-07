@@ -285,4 +285,17 @@ class Tree {
     // array is sorted.
     this.root = this.buildTree(newArray, 0, newArray.length - 1);
   }
+
+  // Finds and returns the lowest node inside the provided tree
+  getLowestNode(root) {
+    let temp = root;
+    let lowest = temp;
+
+    while (temp.left !== null) {
+      temp = temp.left;
+      lowest = temp;
+    }
+
+    return lowest;
+  }
 }
