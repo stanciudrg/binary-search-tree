@@ -86,4 +86,29 @@ class Tree {
 
     return root;
   }
+
+  height(node) {
+    if (!node) return;
+    if (!node.data) return;
+
+    return this.getHeight(node, 0);
+  }
+
+  // Returns the height of the node, which is defined as the number of edges
+  // in the longest path from a given node to a leaf node.
+  getHeight(root, level) {
+    if (root === null) return level;
+
+    // Increase the level with each recursion to compare which
+    // path reached a higher level
+    const newLevel = level + 1;
+    const leftLevel = this.getHeight(root.left, newLevel);
+    const rightLevel = this.getHeight(root.right, newLevel);
+
+    if (leftLevel > rightLevel) {
+      return leftLevel;
+    } else {
+      return rightLevel;
+    }
+  }
 }
