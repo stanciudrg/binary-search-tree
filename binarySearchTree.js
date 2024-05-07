@@ -16,4 +16,17 @@ class Tree {
       ? this.buildTree(this.cleanArray, 0, this.cleanArray.length - 1)
       : null;
   }
+
+  // Turns an array into a balanced binary tree full of Node objects appropriately placed
+  // and returns the level-0 root node
+  buildTree(array, start, end) {
+    if (start > end) return null;
+
+    const mid = parseInt((start + end) / 2);
+    const node = new Node(array[mid]);
+    node.left = this.buildTree(array, start, mid - 1);
+    node.right = this.buildTree(array, mid + 1, end);
+
+    return node;
+  }
 }
