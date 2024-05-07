@@ -71,4 +71,19 @@ class Tree {
 
     return root;
   }
+
+  find(value) {
+    return this.findNode(this.root, value);
+  }
+
+  // Returns the node with the given value, if found
+  findNode(root, value) {
+    if (root === null) return;
+    if (root.data === value) return root;
+
+    if (root.data > value) return this.findNode(root.left, value);
+    if (root.data < value) return this.findNode(root.right, value);
+
+    return root;
+  }
 }
