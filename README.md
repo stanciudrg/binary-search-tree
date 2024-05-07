@@ -1,5 +1,5 @@
 # binary-search-tree
-A Binary Search Tree (BST) data structure that organizes and stores data in a sorted manner.
+A balanced Binary Search Tree (BST) data structure that organizes and stores data in a sorted manner.
 
 #### Time complexity
 
