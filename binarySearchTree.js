@@ -311,3 +311,37 @@ class Tree {
     }
   }
 }
+
+// Driver script
+
+// Generates an array containing n numbers up to n
+function getRandomArray(n) {
+  return Array.from({ length: n }, () => Math.floor(Math.random() * n));
+}
+
+function printElements() {
+  console.log(`Level order: ${tree.levelOrder()} \n`);
+  console.log(`Pre order: ${tree.preOrder()} \n`);
+  console.log(`In order: ${tree.inOrder()} \n`);
+  console.log(`Post order: ${tree.postOrder()} \n`);
+}
+
+const tree = new Tree(getRandomArray(100));
+console.log("Original BST:\n");
+tree.printTree(tree.root);
+console.log(`\nisBalanced: ${tree.isBalanced()}\n`);
+printElements();
+
+console.log("Adding 100 new nodes...\n");
+getRandomArray(100).forEach((number) => tree.insert(number));
+console.log("New BST:\n");
+tree.printTree(tree.root);
+console.log(`isBalanced: ${tree.isBalanced()}\n`);
+printElements();
+
+console.log("Re-balancing the tree...\n");
+tree.rebalance();
+console.log("Final BST:\n");
+tree.printTree(tree.root);
+console.log(`isBalanced: ${tree.isBalanced()}\n`);
+printElements();
